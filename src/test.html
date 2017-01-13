@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        *{margin:0px;padding:0px;}
+        img{border:0px;}
+
+        #slider4{width:800px;height:100px;margin:0px auto;}
+        #slider4>div
+        {
+            float:left;
+            position:relative;
+            width:200px;
+            height:100px;
+            overflow:hidden;
+        }
+        #slider4>div>img
+        {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:200px;
+            height:100px;
+        }
+
+        #img11{background:#f0f;}
+        #img12{background:#b0b;}
+        #img13{background:#808;}
+        #img14{background:#404;}
+
+        #img21{background:#ff0;}
+        #img22{background:#bb0;}
+        #img23{background:#880;}
+        #img24{background:#440;}
+
+        #img31{background:#0f0;}
+        #img32{background:#0b0;}
+        #img33{background:#080;}
+        #img34{background:#040;}
+
+        #img41{background:#00f;}
+        #img42{background:#00b;}
+        #img43{background:#008;}
+        #img44{background:#004;}
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function()
+        {
+            $('#slider4').children('div').each(function(n_div,div)
+            {
+                $(div).children('img').each(function(n_img,img)
+                {
+                    if(n_img) $(img).css({'opacity':'0.0'});
+                    else
+                    {
+                        $(div).attr({'value':(n_img+1)});
+                        $(img).css({'opacity':'1.0'});
+                    }
+                });
+            });
+            window.setInterval(function()
+            {
+                $('#slider4').children('div').each(function(n,element)
+                {
+                    var img = $(element).attr('value');
+                    var rnd = Math.floor(Math.random()*(4-1+1))+1;
+                    if(img != rnd)
+                    {
+                        $(element).attr({'value':rnd});
+                        $(element).children('#img'+(n+1)+img).animate(
+                            {'opacity':'0.0'});
+                        $(element).children('#img'+(n+1)+rnd).animate(
+                            {'opacity':'1.0'});
+                    }
+                });
+            },5000);
+        });
+    </script>
+</head>
+<body>
+<div id="slider4">
+    <div>
+        <img id="img11" src="">
+        <img id="img12" src="">
+        <img id="img13" src="">
+        <img id="img14" src="">
+    </div>
+    <div>
+        <img id="img21" src="">
+        <img id="img22" src="">
+        <img id="img23" src="">
+        <img id="img24" src="">
+    </div>
+    <div>
+        <img id="img31" src="">
+        <img id="img32" src="">
+        <img id="img33" src="">
+        <img id="img34" src="">
+    </div>
+    <div>
+        <img id="img41" src="">
+        <img id="img42" src="">
+        <img id="img43" src="">
+        <img id="img44" src="">
+    </div>
+</div>
+</body>
+</html>
